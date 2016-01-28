@@ -5,22 +5,28 @@
 <body>
   <h1>Welcome to Shimbey's Guestbook!</h1>
  
-  {{> guestBook}}
+  {{>guestBook}}
 </body>
 <template name ="guestBook">
 <form>
-    <div>
+    <div class="form-group">
 	<label for="guestName">Name</label>
-	<input type="text" name="guestName"/>
+	<input type="text"  class= "form-control" name="guestName"/>
 	</div>
+    
+	<br>
 	
-	<div>
+	<div class="form-group">
 	<label for="guestBookMessage">Message</label>
-	<textarea name="guestBookMessage" cols="30" rows="3"></textarea>
+	<textarea name="guestBookMessage" class="form-control" cols="30" rows="3"></textarea>
 	</div>
-	
-	<button type="Submit">Post Message</button>
+	<br>
+	<button type="Submit" class="btn-btn-primary">Post Message</button>
  
  </form>
+
+      {{#each messages}}
+	  {{name}} {{message}} - {{createdOn}}
+      {{/each}}
 </template>
 
