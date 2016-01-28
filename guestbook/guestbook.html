@@ -1,0 +1,26 @@
+<head>
+  <title>guestbook</title>
+</head>
+
+<body>
+  <h1>Welcome to Shimbey's Guestbook!</h1>
+ 
+  {{> guestBook}}
+</body>
+<template name ="guestBook">
+<form>
+    <div>
+	<label for="guestName">Name</label>
+	<input type="text" name="guestName"/>
+	</div>
+	
+	<div>
+	<label for="guestBookMessage">Message</label>
+	<textarea name="guestBookMessage" cols="30" rows="3"></textarea>
+	</div>
+	
+	<button type="Submit">Post Message</button>
+ 
+ </form>
+</template>
+
