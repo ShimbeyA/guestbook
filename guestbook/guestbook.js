@@ -1,5 +1,33 @@
 Messages = new Mongo.Collection("messages");
 
+Router.route('/', function () {
+  
+      this.render ('guestBook'); //render guestbook template 
+      this.layout('layout');
+  
+  });
+
+Router.route('/about', function (){
+  this.render('about');
+  this.layout('layout');
+  });
+
+Router.route('/messages/:_id', function () {
+  //data is a specific keyword in meteor that
+  //calls on message that was entered
+  this.render('message', {
+    data:function() {
+      return Messages.findOne({_id: this.params._id});
+    }
+  });
+  
+  this.layout('layout');
+  },
+  {
+    name: 'message.show'
+  }
+  );
+
 if (Meteor.isClient) {
   
   Meteor.subscribe("messages");
@@ -26,7 +54,9 @@ if (Meteor.isClient) {
           $(event.target).find('input[name=guestName]');
           var nameText= nameBox.val();
           
-          Messages.insert(
+          if (nameText.length > 0 && messageText > 0)
+          {
+            Messages.insert(
             {
               name: nameText,
               message: messageText,
@@ -36,6 +66,13 @@ if (Meteor.isClient) {
           messageBox.val("");
          // alert("Name is " + nameText + ", msg is " + messageText);
       }
+      else{
+        //alert
+        console.output(messageBox);
+        messageBox.style.backgroundColor="blue"
+      }
+      }
+      
       }      
       );
 }
